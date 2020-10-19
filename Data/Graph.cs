@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace CHR_Country_list.Data
 {
+    //Basic Graph data structure
     public class Graph 
     { 
-        private int V;
+        private int vertices;
         private List<int>[] adj; 
         private string [] countries;
-    
+
+        //Constructor, Inputs: v- # of verticies, countries- list of countries
         public Graph(int v, string [] countries) 
         { 
-            V = v; 
+            vertices = v; 
             adj = new List<int>[v]; 
-            this.countries = new string [v];
             for (int i = 0; i < v; ++i) 
                 adj[i] = new List<int>(); 
             this.countries = countries;
-
             
         } 
 
@@ -26,6 +26,8 @@ namespace CHR_Country_list.Data
             adj[v].Add(w);
         } 
 
+        //DepthFirstSearchUtil Recursive helper function for DepthFirstSearch
+        //Inputs: v- current vertice, visited- visited verticies, target- string being searched for
         public List <string> DepthFirstSearchUtil(int v, bool[] visited, string target) 
         { 
             visited[v] = true;
@@ -50,9 +52,10 @@ namespace CHR_Country_list.Data
             return null;
         } 
     
+        // DepthFirstSearch Inputs: v- vertice to start search from, target- string to search for 
         public List <string> DepthFirstSearch(int v, string target) 
         { 
-            bool[] visited = new bool[V]; 
+            bool[] visited = new bool[vertices]; 
     
             return DepthFirstSearchUtil(v, visited, target); 
         } 
